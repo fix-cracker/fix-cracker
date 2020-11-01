@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="STDOUT">
+            <PatternLayout pattern="%p %d %c{1} – %m%n"/>
+        </Console>
+    </Appenders>
+
+
+
+    <Loggers>
+        <Logger name="quickfix.mina.message.FIXMessageDecoder" level="INFO"/>
+        <Root level="DEBUG">
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

@@ -1,0 +1,26 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.1.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.1.0 http://maven.apache.org/xsd/assembly-2.1.0.xsd">
+    <id>main</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>${basedir}/target/dependency</directory>
+            <outputDirectory>libs</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>${basedir}/bin</directory>
+            <outputDirectory>.</outputDirectory>
+        </fileSet>
+    </fileSets>
+    <files>
+        <file>
+            <source>${basedir}/../gui-swing/src/main/resources/LICENSE</source>
+            <outputDirectory>.</outputDirectory>
+        </file>
+
+    </files>
+</assembly>
