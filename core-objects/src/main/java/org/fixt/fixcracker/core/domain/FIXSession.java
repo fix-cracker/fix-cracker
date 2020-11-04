@@ -14,13 +14,13 @@ public class FIXSession {
             Map.of(0, "FIX2.7", 1, "FIX3.0", 2, "FIX4.0", 3, "FIX4.1", 4, "FIX4.2", 5, "FIX4.3",
                     6, "FIX44", 7, "FIX50", 8, "FIX5.0SP1");
 
-    final String name;
-    final String host;
-    final int port;
-    final String beginString;
-    final int defaultApplVerID;
-    final int heartBtInt;
-    final boolean resetOnLogon;
+    String name;
+    String host;
+    int port;
+    String beginString;
+    int defaultApplVerID;
+    int heartBtInt;
+    boolean resetOnLogon;
 
 
     private final TagsString loginTags;
@@ -45,6 +45,7 @@ public class FIXSession {
         return name;
     }
 
+
     public String getHost() {
         return host;
     }
@@ -61,8 +62,18 @@ public class FIXSession {
         return loginTags.getTagValue(SenderCompID.FIELD);
     }
 
+    public void setSenderCompID(String value)
+    {
+        loginTags.setTagValue(SenderCompID.FIELD,value);
+    }
+
     public String getTargetCompID() {
         return loginTags.getTagValue(TargetCompID.FIELD);
+    }
+
+    public void setTargetCompID(String value)
+    {
+        loginTags.setTagValue(TargetCompID.FIELD,value);
     }
 
     public String getBeginString() {
@@ -79,6 +90,35 @@ public class FIXSession {
 
     public boolean isResetOnLogon() {
         return resetOnLogon;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public void setBeginString(String beginString) {
+        this.beginString = beginString;
+    }
+
+    public void setDefaultApplVerID(int defaultApplVerID) {
+        this.defaultApplVerID = defaultApplVerID;
+    }
+
+    public void setHeartBtInt(int heartBtInt) {
+        this.heartBtInt = heartBtInt;
+    }
+
+    public void setResetOnLogon(boolean resetOnLogon) {
+        this.resetOnLogon = resetOnLogon;
     }
 
     @Override

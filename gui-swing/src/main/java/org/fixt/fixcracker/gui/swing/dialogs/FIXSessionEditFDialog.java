@@ -42,28 +42,30 @@ public class FIXSessionEditFDialog extends JPanel implements IDialogFrame {
 
 
     private FIXSession getValue() {
-        //
-        MapEntryViewItem<Integer,String> selectedApplVerID = (MapEntryViewItem<Integer, String>) applVerIDCBox.getSelectedItem();
-        return new FIXSession(
-                nameEdit.getText().trim(),
-                hostEdit.getText().trim(),
-                (Integer) portEdit.getValue(),
-                (String)beginStringCBox.getSelectedItem(),
-                Objects.requireNonNull(selectedApplVerID).getEntry().getKey(),
-                (Integer)heartbeatIntEdit.getValue(),
-                resetOnLogonCheckbox.isSelected(),
-                "49=" + senderCompIDEdit.getText() + FIXCrackerConst.SOH_STR + "56=" + targetCompIDEdit.getText()
-        );
+        MapEntryViewItem<Integer, String> selectedApplVerID = (MapEntryViewItem<Integer, String>) applVerIDCBox.getSelectedItem();
+        if (session == null) {
+            session = new FIXSession("", "", 0, "", 0, 0, false, "");
+        }
+        session.setName(nameEdit.getText().trim());
+        session.setHost(hostEdit.getText().trim());
+        session.setPort((Integer) portEdit.getValue());
+        session.setBeginString((String) beginStringCBox.getSelectedItem());
+        session.setDefaultApplVerID(Objects.requireNonNull(selectedApplVerID).getEntry().getKey());
+        session.setHeartBtInt((Integer) heartbeatIntEdit.getValue());
+        session.setResetOnLogon(resetOnLogonCheckbox.isSelected());
+        session.setSenderCompID(senderCompIDEdit.getText());
+        session.setTargetCompID(targetCompIDEdit.getText());
+        return session;
     }
 
     private JTextField nameEdit = new JTextField();
     private JTextField hostEdit = new JTextField();
-    private JSpinner portEdit = new JSpinner(new SpinnerNumberModel(1234,1,65535,1));
+    private JSpinner portEdit = new JSpinner(new SpinnerNumberModel(1234, 1, 65535, 1));
     private JTextField senderCompIDEdit = new JTextField();
     private JTextField targetCompIDEdit = new JTextField();
     private JComboBox<String> beginStringCBox = new JComboBox<>(FIXSession.BEGIN_STRING_ARRAY);
-    private JComboBox<MapEntryViewItem<Integer,String>> applVerIDCBox = new JComboBox<>(new DefaultMapComboBoxModel<>(FIXSession.APPL_VER_IDS));
-    private JSpinner heartbeatIntEdit = new JSpinner(new SpinnerNumberModel(30,0,1000,1));
+    private JComboBox<MapEntryViewItem<Integer, String>> applVerIDCBox = new JComboBox<>(new DefaultMapComboBoxModel<>(FIXSession.APPL_VER_IDS));
+    private JSpinner heartbeatIntEdit = new JSpinner(new SpinnerNumberModel(30, 0, 1000, 1));
     private JCheckBox resetOnLogonCheckbox = new JCheckBox("ResetOnLogon");
 
     public FIXSessionEditFDialog() {
@@ -107,8 +109,7 @@ public class FIXSessionEditFDialog extends JPanel implements IDialogFrame {
             applVerIDCBox.setSelectedItem(session.getDefaultApplVerID());
             heartbeatIntEdit.setValue(session.getHeartBtInt());
             resetOnLogonCheckbox.setSelected(session.isResetOnLogon());
-        }
-        else{
+        } else {
             nameEdit.setText("");
             hostEdit.setText("");
             portEdit.setValue(1234);

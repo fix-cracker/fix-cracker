@@ -50,6 +50,8 @@ public class MessageSender extends JPanel implements MessageSenderView, TagAddFD
             add(TargetLocationID.FIELD);
             add(SendingTime.FIELD);
             add(CheckSum.FIELD);
+            add(BodyLength.FIELD);
+            add(MsgSeqNum.FIELD);
         }
     };
 

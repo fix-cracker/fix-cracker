@@ -4,7 +4,6 @@ import org.fixt.fixcracker.core.domain.FIXSession;
 import org.fixt.fixcracker.core.domain.TagsString;
 import org.fixt.fixcracker.core.settings.PreferencesSessionStorage;
 import quickfix.ConfigError;
-import quickfix.FieldConvertError;
 import quickfix.SessionID;
 import quickfix.SessionSettings;
 import quickfix.field.SenderCompID;
@@ -31,8 +30,8 @@ public class PreferencesInit {
             SessionID id = it.next();
             Properties props = sessionSettings.getSessionProperties(id);
             TagsString tagsString= new TagsString(null);
-            tagsString.add(TargetCompID.FIELD,id.getSenderCompID());
-            tagsString.add(SenderCompID.FIELD,id.getTargetCompID());
+            tagsString.setTagValue(TargetCompID.FIELD,id.getSenderCompID());
+            tagsString.setTagValue(SenderCompID.FIELD,id.getTargetCompID());
             FIXSession session = new FIXSession(
                     id.getTargetCompID() + "->" + id.getSenderCompID(),
                     "localhost", 1234,

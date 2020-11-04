@@ -31,7 +31,7 @@ public class TagsString {
         return map.get(tag);
     }
 
-    public void add(int tag,String value){
+    public void setTagValue(int tag, String value){
         map.put(tag,value);
     }
 

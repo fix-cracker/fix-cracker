@@ -42,7 +42,7 @@ public class Images {
         actionToPathMap.put(OK, prefix16 + "actions/go-down.png");
         actionToPathMap.put(CANCEL, prefix16 + "emblems/emblem-unreadable.png");
         actionToPathMap.put(DIALOG_ERROR, prefix16 + "status/dialog-error.png");
-        actionToPathMap.put(ABOUT, prefix16 + "status/dialog-information.png");
+        actionToPathMap.put(ABOUT, "about-icon.png");
         actionToPathMap.put(START, prefix16 + "actions/media-playback-start.png");
         actionToPathMap.put(STOP, prefix16 + "actions/media-playback-stop.png");
         actionToPathMap.put(GO_BOTTOM, prefix16 + "actions/go-bottom.png");
@@ -55,7 +55,7 @@ public class Images {
         actionToPathMap.put(GO_DOWN, prefix16 + "actions/go-down.png");
         actionToPathMap.put(GO_UP, prefix16 + "actions/go-up.png");
         actionToPathMap.put(OPEN_FILE, prefix16 + "actions/document-open.png");
-        actionToPathMap.put(SAVE_FILE, prefix16 + "actions/document-save.png");
+        actionToPathMap.put(SAVE_FILE, prefix16 + "devices/media-floppy.png");
     }
 
     private static final Map<String, ImageIcon> actionToIconMap = new HashMap<>();
@@ -71,8 +71,11 @@ public class Images {
             return null;
         }
         ClassLoader cl = Images.class.getClassLoader();
-//        java.net.URL url = cl.getResource(path);
+
         java.net.URL url = Images.class.getResource(path);
+        if(url==null){
+            url = cl.getResource(path);
+        }
         if (url != null) {
             icon = new ImageIcon(url);
             actionToIconMap.put(actionName, icon);
