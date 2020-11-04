@@ -1,4 +1,4 @@
-markdown synFIX Cracker is a lightweight UI tool built on QuickFIXJ base  
+FIX Cracker is a lightweight UI tool built on QuickFIXJ base  
 
 Main features:
 * Configurable list of sessions for future use
