@@ -1,7 +1,7 @@
 How to start FixCracker using zip distributive
 
 Prerequisites:
-You need to configure JAVA_HOME variable on your machine. You can check this by following commands:
+You need to configure JAVA_HOME variable on your machine. You can check this by the following commands:
 Unix:
 echo $JAVA_HOME
 ./$JAVA_HOME/bin/java -version
